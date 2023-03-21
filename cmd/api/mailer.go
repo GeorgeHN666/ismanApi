@@ -118,6 +118,7 @@ p {
 
 * {
   line-height: inherit;
+  font-family : sans-serif;
 }
 
 a[x-apple-data-detectors='true'] {
@@ -159,7 +160,7 @@ table, td { color: #000000; } @media (max-width: 480px) { #u_content_heading_2 .
     <tr>
       <td class="v-container-padding-padding" style="overflow-wrap:break-word;word-break:break-word;padding:40px 10px 0px;font-family:'Open Sans',sans-serif;" align="left">
         
-  <h1 class="v-line-height v-font-size" style="margin: 0px; color: #000000; line-height: 140%; text-align: center; word-wrap: break-word; font-family: Arvo; font-size: 22px; "><strong>NAME se ha contactado<br /></strong></h1>
+  <h1 class="v-line-height v-font-size" style="margin: 0px; color: #000000; line-height: 140%; text-align: center; word-wrap: break-word; font-family: Arvo; font-size: 22px; "><strong>` + name + ` se ha contactado<br /></strong></h1>
 
       </td>
     </tr>
@@ -286,6 +287,7 @@ p {
 
 * {
   line-height: inherit;
+  font-family : sans-serif;
 }
 
 a[x-apple-data-detectors='true'] {

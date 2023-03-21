@@ -14,3 +14,9 @@ type Subscriber struct {
 	Status    int                `json:"status"  bson:"status"`
 	CreatedAt time.Time          `json:"created_at"   bson:"created_at"`
 }
+
+type Contact struct {
+	Name  string `json:"name"`
+	Email string `json:"email"`
+	Desc  string `json:"description"`
+}

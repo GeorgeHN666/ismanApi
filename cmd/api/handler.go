@@ -5,6 +5,45 @@ import (
 	"net/http"
 )
 
+func (app *application) contactoEP(w http.ResponseWriter, r *http.Request) {
+
+	w.Header().Set("Content-Type", "application/json")
+
+	var res struct {
+		Error   bool   `json:"error"`
+		Message string `json:"message"`
+	}
+
+	var cont *Contact
+	err := app.ReadJSON(w, r, &cont)
+	if err != nil {
+		app.BadRequest(w, r, err)
+		return
+	}
+
+	if len(cont.Email) < 1 {
+		http.Error(w, http.StatusText(http.StatusNoContent), http.StatusNoContent)
+		return
+	} else if len(cont.Name) < 1 {
+		http.Error(w, http.StatusText(http.StatusNoContent), http.StatusNoContent)
+		return
+	} else if len(cont.Desc) < 1 {
+		http.Error(w, http.StatusText(http.StatusNoContent), http.StatusNoContent)
+		return
+	} else {
+		err = app.SendContactForm(cont.Name, cont.Email, cont.Desc)
+		if err != nil {
+			http.Error(w, http.StatusText(http.StatusInternalServerError), http.StatusInternalServerError)
+			return
+		}
+	}
+
+	res.Error = false
+	res.Message = "all good"
+	app.WriteJSON(w, r, res, http.StatusOK)
+
+}
+
 func (app *application) SubscribeUserEP(w http.ResponseWriter, r *http.Request) {
 
 	w.Header().Set("Content-Type", "application/json")
@@ -35,6 +74,13 @@ func (app *application) SubscribeUserEP(w http.ResponseWriter, r *http.Request) 
 		app.BadRequest(w, r, err)
 		return
 	}
+
+	err = app.ReportSubscription(sub.Email, sub.FullName)
+	if err != nil {
+		app.BadRequest(w, r, err)
+		return
+	}
+
 	res.Error = false
 	res.Message = fmt.Sprintf("%s exitosamente subscrito", sub.FullName)
 

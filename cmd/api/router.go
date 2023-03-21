@@ -21,6 +21,7 @@ func (app *application) Router() http.Handler {
 
 	// PUBLIC
 	mux.Post("/_sub", app.SubscribeUserEP)
+	mux.Post("/_send", app.contactoEP)
 	mux.Delete("/_del", app.DeleteSubscriptionEP)
 
 	return mux

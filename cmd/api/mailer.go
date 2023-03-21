@@ -27,7 +27,7 @@ func (app *application) SendContactForm(name, email, desc string) error {
 	mail.SetHeader("From", app.config.smtp.user)
 	mail.SetHeader("To", app.config.personal.puser)
 
-	mail.SetHeader("Subject", "Bienvenido a Isman Publicidad")
+	mail.SetHeader("Subject", "Nuevo contacto")
 	mail.SetBody("text/html", ReturnContact(name, email, desc))
 
 	send := gomail.NewDialer(app.config.smtp.prov, app.config.smtp.sport, app.config.smtp.user, app.config.smtp.password)

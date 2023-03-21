@@ -31,6 +31,7 @@ func (app *application) contactoEP(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, http.StatusText(http.StatusNoContent), http.StatusNoContent)
 		return
 	} else {
+
 		err = app.SendContactForm(cont.Name, cont.Email, cont.Desc)
 		if err != nil {
 			http.Error(w, http.StatusText(http.StatusInternalServerError), http.StatusInternalServerError)

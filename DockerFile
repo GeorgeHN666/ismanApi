@@ -4,7 +4,7 @@ WORKDIR /build
 COPY go.mod .
 COPY go.sum .
 RUN go mod download && go mod verify
-COPY ./cmd/ .
+COPY ./cmd/api/ .
 RUN go build -o app .
 EXPOSE 8080
 CMD ["/build/app"]
